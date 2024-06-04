@@ -1,7 +1,10 @@
+let courseCount = 1;
+
 function addCourse() {
+    courseCount++;
     const courseInputs = document.getElementById('courseInputs');
-    const courseCount = courseInputs.children.length + 1;
     const newCourse = document.createElement('div');
+    newCourse.id = `courseDiv${courseCount}`;
     newCourse.innerHTML = `
         <label for="course${courseCount}">Course ${courseCount} Grade:</label>
         <select id="course${courseCount}" name="course${courseCount}">
@@ -23,8 +26,14 @@ function addCourse() {
         </select>
         <label for="credits${courseCount}">Credits:</label>
         <input type="number" id="credits${courseCount}" name="credits${courseCount}" min="0" step="0.5">
+        <button type="button" onclick="removeCourse('courseDiv${courseCount}')">Delete</button>
     `;
     courseInputs.appendChild(newCourse);
+}
+
+function removeCourse(courseId) {
+    const courseDiv = document.getElementById(courseId);
+    courseDiv.remove();
 }
 
 function calculateSemesterGPA() {
@@ -33,8 +42,8 @@ function calculateSemesterGPA() {
     let totalCredits = 0;
 
     for (let i = 0; i < courseInputs.length; i++) {
-        const grade = parseFloat(document.getElementById(`course${i + 1}`).value);
-        const credits = parseFloat(document.getElementById(`credits${i + 1}`).value);
+        const grade = parseFloat(courseInputs[i].querySelector('select').value);
+        const credits = parseFloat(courseInputs[i].querySelector('input[type=number]').value);
         totalPoints += grade * credits;
         totalCredits += credits;
     }
@@ -51,8 +60,8 @@ function calculateOverallGPA() {
     let totalCredits = 0;
 
     for (let i = 0; i < courseInputs.length; i++) {
-        const grade = parseFloat(document.getElementById(`course${i + 1}`).value);
-        const credits = parseFloat(document.getElementById(`credits${i + 1}`).value);
+        const grade = parseFloat(courseInputs[i].querySelector('select').value);
+        const credits = parseFloat(courseInputs[i].querySelector('input[type=number]').value);
         totalPoints += grade * credits;
         totalCredits += credits;
     }
