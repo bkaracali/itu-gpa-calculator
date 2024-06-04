@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITU GPA Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>ITU GPA Calculator</h1>
+    <form id="gpaForm">
+        <h2>Semester GPA</h2>
+        <div id="courseInputs">
+            <div>
+                <label for="course1">Course 1 Grade:</label>
+                <select id="course1" name="course1">
+                    <option value="4.00">AA</option>
+                    <option value="3.75">BA+</option>
+                    <option value="3.50">BA</option>
+                    <option value="3.25">BB+</option>
+                    <option value="3.00">BB</option>
+                    <option value="2.75">CB+</option>
+                    <option value="2.50">CB</option>
+                    <option value="2.25">CC+</option>
+                    <option value="2.00">CC</option>
+                    <option value="1.75">DC+</option>
+                    <option value="1.50">DC</option>
+                    <option value="1.25">DD+</option>
+                    <option value="1.00">DD</option>
+                    <option value="0.00">FF</option>
+                    <option value="0.00">VF</option>
+                </select>
+                <label for="credits1">Credits:</label>
+                <input type="number" id="credits1" name="credits1" min="0" step="0.5">
+            </div>
+        </div>
+        <button type="button" onclick="addCourse()">Add Course</button>
+        <button type="button" onclick="calculateSemesterGPA()">Calculate Semester GPA</button>
+        <h2>Overall GPA</h2>
+        <div>
+            <label for="previousCredits">Total Credits Completed:</label>
+            <input type="number" id="previousCredits" name="previousCredits" min="0" step="0.5">
+        </div>
+        <div>
+            <label for="previousGPA">Current GPA:</label>
+            <input type="number" id="previousGPA" name="previousGPA" min="0" step="0.01">
+        </div>
+        <button type="button" onclick="calculateOverallGPA()">Calculate Overall GPA</button>
+    </form>
+    <h2 id="semesterResult"></h2>
+    <h2 id="overallResult"></h2>
+    <script src="script.js"></script>
+</body>
+</html>
